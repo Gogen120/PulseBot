@@ -109,7 +109,12 @@ def build_model(chars, x, y):
         return model
 
 
-def main():
+def write_result_to_file(filename, result):
+    with open(os.path.join(START_DIR, filename), 'w') as file:
+        file.write(result)
+
+
+def create_ode():
     remove_tabs_in_file(
         os.path.join(START_DIR, 'data/poem_data.txt'),
         os.path.join(START_DIR, 'data/new_poem_data.txt')
@@ -123,7 +128,7 @@ def main():
     model = build_model(chars, x, y)
 
     result = create_result_text(
-        diversity_list=[0.2],
+        diversity_list=[0.5],
         start_index=0,
         chars=chars,
         text=text,
@@ -132,5 +137,4 @@ def main():
         model=model
     )
 
-    with open(os.path.join(START_DIR, 'result.txt'), 'w') as file:
-        file.write(result)
+    return result
