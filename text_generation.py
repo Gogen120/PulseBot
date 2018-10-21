@@ -10,6 +10,7 @@ import io
 START_DIR = os.path.dirname(os.path.abspath(__file__))
 MAXLEN = 40
 STEP = 3
+NUMBER_OF_ITERATIONS = 40
 
 
 def sample(preds, temperature=1.0):
@@ -103,7 +104,7 @@ def build_model(chars, x, y):
         optimizer = RMSprop(lr=0.01)
         model.compile(loss='categorical_crossentropy', optimizer=optimizer)
 
-        model.fit(x, y, batch_size=128, epochs=40)
+        model.fit(x, y, batch_size=128, epochs=NUMBER_OF_ITERATIONS)
 
         model.save(os.path.join(START_DIR, 'models/poem_model.h5'))
         return model
