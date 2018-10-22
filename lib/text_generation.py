@@ -5,12 +5,7 @@ from keras.layers import LSTM
 from keras.optimizers import RMSprop
 import numpy as np
 import io
-
-
-START_DIR = os.path.dirname(os.path.abspath(__file__))
-MAXLEN = 40
-STEP = 3
-NUMBER_OF_ITERATIONS = 40
+from config import START_DIR, MAXLEN, STEP, NUMBER_OF_ITERATIONS
 
 
 def sample(preds, temperature=1.0):
