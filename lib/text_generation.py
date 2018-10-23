@@ -27,7 +27,16 @@ def remove_tabs_in_file(input_filename, output_filename):
         file.writelines(lines)
 
 
-def create_result_text(diversity_list, start_index, chars, text, char_indices, indices_char, model, number_of_rows=4):
+def create_result_text(
+    diversity_list,
+    start_index,
+    chars,
+    text,
+    char_indices,
+    indices_char,
+    model,
+    number_of_rows=4
+):
     for diversity in diversity_list:
         generated = ''
         sentence = text[start_index: start_index + MAXLEN]
@@ -37,7 +46,7 @@ def create_result_text(diversity_list, start_index, chars, text, char_indices, i
         while result.count('\n') < number_of_rows:
             x_pred = np.zeros((1, MAXLEN, len(chars)))
             for t, char in enumerate(sentence):
-                x_pred[0, t, char_indices[char]] = 1.
+                x_pred[0, t, char_indices[char]] = 1.0
 
             preds = model.predict(x_pred, verbose=0)[0]
             next_index = sample(preds, diversity)
@@ -120,7 +129,9 @@ def create_ode():
     indices_char = get_indices_char(chars)
     char_indices = get_char_indices(chars)
     sentences, next_chars = create_sentences_and_next_chars_list(text)
-    x, y = create_feature_and_target_set(sentences, chars, char_indices, indices_char, next_chars)
+    x, y = create_feature_and_target_set(
+        sentences, chars, char_indices, indices_char, next_chars
+    )
     model = build_model(chars, x, y)
 
     result = create_result_text(
