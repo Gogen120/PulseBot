@@ -17,10 +17,10 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if message.content.startswith('!ode'):
-        await client.send_message(message.channel, 'Идет творческий процесс...')
+        await client.send_message(message.channel, 'Creating ode...')
         ode = create_ode()
         await client.send_message(
-            message.channel, f'Ода Пульсу №{random.randint(1, 10000)}:'
+            message.channel, f'Ode to Pulse №{random.randint(1, 10000)}:'
         )
         await client.send_message(message.channel, ode)
     elif message.content.startswith('!hi'):
