@@ -22,7 +22,9 @@ async def on_message(message):
         await client.send_message(
             message.channel, f'Ode to Pulse №{random.randint(1, 10000)}:'
         )
+        await client.send_message(message.channel, '-----------------------------------')
         await client.send_message(message.channel, ode)
+        await client.send_message(message.channel, '-----------------------------------')
     elif message.content.startswith('!hi'):
         await client.send_message(
             message.channel,
