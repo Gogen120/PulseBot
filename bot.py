@@ -6,6 +6,12 @@ from lib.text_generation import create_ode, NUMBER_OF_ITERATIONS
 client = discord.Client()
 
 
+def get_members(server_members):
+    members = [member.name for member in server_members]
+    return '\n'.join(members)
+
+
+
 @client.event
 async def on_ready():
     print('Logged in as')
@@ -44,6 +50,12 @@ async def on_message(message):
         await client.send_message(
             message.channel,
             f'Code for bot you can find here: https://github.com/Gogen120/PulseBot'
+        )
+    elif message.content.startswith('!members'):
+        members = get_members(message.server.members)
+        await client.send_message(
+            message.channel,
+            f'Channel members:\n{members}'
         )
 
 
