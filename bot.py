@@ -1,7 +1,8 @@
 import os
 import random
 import discord
-from lib.text_generation import create_ode, NUMBER_OF_ITERATIONS
+from config import NUMBER_OF_ITERATIONS
+from lib.text_generation import create_ode
 
 client = discord.Client()
 
@@ -9,7 +10,6 @@ client = discord.Client()
 def get_members(server_members):
     members = [member.name for member in server_members]
     return '\n'.join(members)
-
 
 
 @client.event
