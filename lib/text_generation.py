@@ -114,11 +114,6 @@ def build_model(chars, x, y):
         return model
 
 
-def write_result_to_file(filename, result):
-    with open(os.path.join(START_DIR, filename), 'w') as file:
-        file.write(result)
-
-
 def create_ode():
     remove_tabs_in_file(
         os.path.join(START_DIR, 'data/poem_data.txt'),
